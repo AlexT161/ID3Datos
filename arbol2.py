@@ -3,15 +3,20 @@ import csv
 
 class ID3(object):
 
-    def __init__(self, fichero):
+	def __init__(self, fichero):
 		self.fichero = fichero
-		with open(fichero) as cvsfile:
-			lector = csv.reader(cvsfile, delimiter=',')
-			#linea = 0
-			for row in lector:
-				#if linea == 0:
-					print(', '.join(row))
-					#else:
-	     #			print(', '.join(row))
-	     #			linea += 1
+		Ninst = len(open(fichero).readlines())-1
+		print("Esto tiene:",Ninst,"instancias")
+		lector = csv.DictReader(open(fichero))
+		interno = {}
+		d = 0
+		diccionario = {}
+		for ord_dict in lector:
+			for key,value in ord_dict.items():
+				interno [key] = value
+			diccionario[d] = interno
+			d += 1
+		print(diccionario.keys())
+		print(diccionario)
+
 id3 = ID3('railway.data')
